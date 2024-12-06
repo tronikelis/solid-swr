@@ -6,7 +6,7 @@ import { createMutator, createRevalidator, SwrOpts, SwrProvider } from "./core";
 import { Store } from "./store";
 
 describe("core", () => {
-    let fetcher: MockedFunction<SwrOpts["fetcher"]>;
+    let fetcher: MockedFunction<any>;
     let store: SwrOpts["store"];
     let key: string;
 
@@ -61,6 +61,19 @@ describe("core", () => {
             expect(store.lookupOrDef(key).data).toBe(key);
             expect(store.lookupOrDef(key)._onSuccess).toBe(1);
             expect(store.lookupOrDef(key).err).toBeUndefined();
+        });
+
+        it("null response from api", async () => {
+            fetcher = vi.fn(() => Promise.resolve(null));
+            store.update("foo", { data: "foo" });
+
+            const { result } = renderHelper();
+
+            void result.revalidator("foo");
+
+            await vi.runAllTimersAsync();
+
+            expect(store.lookupOrDef("foo").data).toBeNull();
         });
 
         it("deduplicates calls to fetcher", () => {
