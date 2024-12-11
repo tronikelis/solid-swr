@@ -3,26 +3,38 @@
     "description": "The beloved swr package ported over to solid",
     "version": "5.0.1",
     "type": "module",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
+    "main": "./dist/index.cjs",
+    "types": "./dist/index.d.cts",
     "module": "./dist/index.js",
     "exports": {
         ".": {
             "import": {
                 "types": "./dist/index.d.ts",
                 "default": "./dist/index.js"
+            },
+            "require": {
+                "types": "./dist/index.d.cts",
+                "default": "./dist/index.cjs"
             }
         },
         "./cache": {
             "import": {
                 "types": "./dist/cache.d.ts",
                 "default": "./dist/cache.js"
+            },
+            "require": {
+                "types": "./dist/cache.d.cts",
+                "default": "./dist/cache.cjs"
             }
         },
         "./extra": {
             "import": {
                 "types": "./dist/extra.d.ts",
                 "default": "./dist/extra.js"
+            },
+            "require": {
+                "types": "./dist/extra.d.cts",
+                "default": "./dist/extra.cjs"
             }
         }
     },
@@ -47,7 +59,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "vite",
-        "build": "tsc",
+        "build": "tsup",
         "lint": "eslint . -c ./.eslintrc.cjs",
         "test": "vitest",
         "tsc": "tsc --noEmit"
@@ -55,7 +67,6 @@
     "peerDependencies": {
         "solid-js": "1.x.x"
     },
-    "dependencies": {},
     "devDependencies": {
         "@solidjs/testing-library": "0.8.5",
         "@testing-library/jest-dom": "6.3.0",
@@ -65,6 +76,7 @@
         "jsdom": "24.0.0",
         "prettier": "3.2.4",
         "prettier-config-tronikelis": "3.0.0",
+        "tsup": "8.3.5",
         "typescript": "5.3.3",
         "vite": "5.0.12",
         "vite-plugin-solid": "2.9.1",
