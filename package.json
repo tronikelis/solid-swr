@@ -8,17 +8,14 @@
     "module": "./dist/index.js",
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
             "import": "./dist/index.js",
             "require": "./dist/index.cjs"
         },
         "./cache": {
-            "types": "./dist/cache.d.ts",
             "import": "./dist/cache.js",
             "require": "./dist/cache.cjs"
         },
         "./extra": {
-            "types": "./dist/extra.d.ts",
             "import": "./dist/extra.js",
             "require": "./dist/extra.cjs"
         }
